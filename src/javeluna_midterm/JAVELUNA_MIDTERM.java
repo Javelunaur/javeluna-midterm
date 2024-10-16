@@ -11,6 +11,7 @@ public class JAVELUNA_MIDTERM {
         
         JAVELUNA_MIDTERM go = new JAVELUNA_MIDTERM();
         config conf = new config();
+        config dbConfig = new config();
         do{
             switch (act){
        
@@ -18,9 +19,22 @@ public class JAVELUNA_MIDTERM {
                     break;
             case 2 : go.viewp(); //view
                     break;
-            case 3: go.upd();
+            case 3: 
+                System.out.println("Enter patient ID to update: ");
+                int p_id = s.nextInt();
+                System.out.print("Patient name to update: ");
+                String p_n=s.next();
+                   
+        String sqlUpdate = "UPDATE patient SET fn = ? WHERE pid = ?";
+        dbConfig.updateRecord(sqlUpdate, p_n, p_id);
+                
                     break;
-            case 4: go.del();
+            case 4: System.out.println("Enter Patient ID to delete: ");
+            int pdel = s.nextInt();
+        
+        // SQL Delete statement to delete a student by their ID
+        String sqlDelete = "DELETE FROM patient WHERE pid = ?";
+        dbConfig.deleteRecord(sqlDelete, pdel);
                     break;
             case 5: System.out.println("Program Closed.");
              
@@ -33,7 +47,7 @@ public class JAVELUNA_MIDTERM {
         config conf = new config();
         System.out.print("Patient ID: ");
         int pid = sc.nextInt();
-        System.out.print("Firt Name: ");
+        System.out.print("First Name: ");
         String fn=sc.next();
         System.out.print("Last Name: ");
         String ln = sc.next();
